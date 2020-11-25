@@ -7,7 +7,7 @@
     <bpmn:startEvent id="Event_1y48tln">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="simGeneratePayload" value="foo = ${g.uniformBooleanByProbability(0.78)}" />
+          <camunda:property name="simGeneratePayload" value="foo=${g.uniformBooleanByProbability(0.78)}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:outgoing>Flow_0uogp40</bpmn:outgoing>
