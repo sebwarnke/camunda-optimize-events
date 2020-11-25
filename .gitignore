@@ -1,0 +1,6 @@
+**/.DS_Store
+**/*.mv.db
+**/*.trace.db
+**/*.iml
+**/.idea
+target
