@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_16xbbgc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.3.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_16xbbgc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.3.0">
   <bpmn:collaboration id="Collaboration_0h6e6ro">
     <bpmn:participant id="Participant_0cfjcar" name="Sub 1" processRef="sub_1" />
   </bpmn:collaboration>
   <bpmn:process id="sub_1" isExecutable="true">
     <bpmn:startEvent id="Event_1y48tln">
+      <bpmn:extensionElements>
+        <camunda:properties>
+          <camunda:property name="simGeneratePayload" value="foo = ${g.normalFromArg2(true, false, 0.9, 0.1)}" />
+        </camunda:properties>
+      </bpmn:extensionElements>
       <bpmn:outgoing>Flow_0uogp40</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:exclusiveGateway id="Gateway_1msxfk6" name="Foo?">
@@ -31,6 +36,11 @@
         <bpmn:escalationEventDefinition id="EscalationEventDefinition_18zs1m5" escalationRef="Escalation_062cnhz" />
       </bpmn:startEvent>
       <bpmn:userTask id="Activity_0aoerta" name="Do Step 4">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="simNextFire" value="${g.nowPlusMinutes(g.uniformInt(1,9))}" />
+          </camunda:properties>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_1tqg5vx</bpmn:incoming>
         <bpmn:outgoing>Flow_0othx70</bpmn:outgoing>
       </bpmn:userTask>
@@ -43,6 +53,11 @@
         <bpmn:messageEventDefinition id="MessageEventDefinition_0iwgkfn" messageRef="Message_17wxxgm" />
       </bpmn:intermediateCatchEvent>
       <bpmn:userTask id="Activity_1jb1st6" name="Do Step 5">
+        <bpmn:extensionElements>
+          <camunda:properties>
+            <camunda:property name="simNextFire" value="${g.nowPlusHours(g.uniformInt(2,6))}" />
+          </camunda:properties>
+        </bpmn:extensionElements>
         <bpmn:incoming>Flow_0xy922u</bpmn:incoming>
         <bpmn:outgoing>Flow_1pdbjyn</bpmn:outgoing>
       </bpmn:userTask>
