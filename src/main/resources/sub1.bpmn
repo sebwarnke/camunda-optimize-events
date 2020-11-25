@@ -7,12 +7,17 @@
     <bpmn:startEvent id="Event_1y48tln">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="simGeneratePayload" value="foo = ${g.normalFromArg2(true, false, 0.9, 0.1)}" />
+          <camunda:property name="simGeneratePayload" value="foo = ${g.uniformBooleanByProbability(0.78)}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:outgoing>Flow_0uogp40</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:exclusiveGateway id="Gateway_1msxfk6" name="Foo?">
+      <bpmn:extensionElements>
+        <camunda:executionListener event="start">
+          <camunda:script scriptFormat="javascript">print("foo= " + foo)</camunda:script>
+        </camunda:executionListener>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0wzz3z3</bpmn:incoming>
       <bpmn:outgoing>Flow_0crfiql</bpmn:outgoing>
       <bpmn:outgoing>Flow_1ap5sgw</bpmn:outgoing>
@@ -78,7 +83,7 @@
     <bpmn:sequenceFlow id="Flow_0zsvix8" sourceRef="Gateway_0qn1yg6" targetRef="Activity_1rwy7km" />
     <bpmn:sequenceFlow id="Flow_0r1oix7" sourceRef="Event_1ozcwko" targetRef="Gateway_0qn1yg6" />
     <bpmn:sequenceFlow id="Flow_0umtwh2" sourceRef="Activity_1rwy7km" targetRef="Event_1nwpswv" />
-    <bpmn:serviceTask id="Activity_1q1o9dx" name="Do Step 1" camunda:delegateExpression="${doWork}">
+    <bpmn:serviceTask id="Activity_1q1o9dx" name="Do Step 1" camunda:asyncAfter="true" camunda:delegateExpression="${doWork}">
       <bpmn:incoming>Flow_0uogp40</bpmn:incoming>
       <bpmn:outgoing>Flow_0wzz3z3</bpmn:outgoing>
     </bpmn:serviceTask>

@@ -4,7 +4,7 @@
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:extensionElements>
         <camunda:properties>
-          <camunda:property name="simNextFire" value="${g.timesPerDay(&#34;start&#34;,&#34;08:00&#34;,&#34;20:00&#34;, g.uniformLong(0, 200))}" />
+          <camunda:property name="simNextFire" value="${g.timesPerDay(&#34;start&#34;,&#34;08:00&#34;,&#34;20:00&#34;, g.uniformLong(50, 200))}" />
         </camunda:properties>
       </bpmn:extensionElements>
       <bpmn:outgoing>Flow_09zjru9</bpmn:outgoing>
