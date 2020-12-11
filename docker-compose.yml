@@ -4,9 +4,9 @@ services:
   optimize-elasticsearch:
     container_name: optimize-elasticsearch
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:7.6.1
-    mem_limit: 2g
+    mem_limit: 4g
     environment:
-      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "ES_JAVA_OPTS=-Xms3584m -Xmx3584m"
       - discovery.type=single-node
     ports:
       - "9200:9200"
